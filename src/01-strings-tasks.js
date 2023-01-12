@@ -231,8 +231,11 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  // prettier-ignore
+  return str.replace(/[a-z]/gi, (character) => output[input.indexOf(character)]);
 }
 
 /**
@@ -248,8 +251,15 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+// prettier-ignore
+function isString(value) {
+  let ifIsString = false;
+  if (value !== null) {
+    if (typeof value === 'string' || (typeof value === 'object' && typeof value.valueOf() === 'string')) {
+      ifIsString = true;
+    }
+  }
+  return ifIsString;
 }
 
 /**
