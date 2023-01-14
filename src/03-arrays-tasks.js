@@ -230,8 +230,13 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 // prettier-ignore
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  let total = 0;
+  function sum(a) {
+    total += a;
+    return total;
+  }
+  return arr.map(sum);
 }
 
 /**
@@ -371,8 +376,8 @@ function getFalsyValuesCount(arr) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  return arr.filter((element) => element === item).length;
 }
 
 /**
@@ -386,8 +391,8 @@ function findAllOccurrences(/* arr, item */) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.toString();
 }
 
 /**
@@ -416,8 +421,32 @@ function toStringList(/* arr */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+// prettier-ignore
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    const countryA = a.country;
+    const countryB = b.country;
+    const cityA = a.city;
+    const cityB = b.city;
+    if (countryA > countryB) {
+      return 1;
+    }
+    if (countryA < countryB) {
+      return -1;
+    }
+    if (countryA === countryB) {
+      if (cityA > cityB) {
+        return 1;
+      }
+      if (cityA < cityB) {
+        return -1;
+      }
+      if (cityA === cityB) {
+        return 0;
+      }
+    }
+    return 0;
+  });
 }
 
 /**
@@ -438,8 +467,10 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+// prettier-ignore
+function getIdentityMatrix(n) {
+  const arr = Array(n).fill(0);
+  return Array(n).fill(arr);
 }
 
 /**
