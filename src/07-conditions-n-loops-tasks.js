@@ -132,8 +132,13 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+// prettier-ignore
+function doRectanglesOverlap(rect1, rect2) {
+  let overlap = false;
+  if (rect1.left + rect1.width > rect2.left && rect1.top + rect1.height > rect2.top) {
+    overlap = true;
+  }
+  return overlap;
 }
 
 /**
@@ -162,8 +167,14 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  let isInside = false;
+  const xSpace = point.x - circle.center.x;
+  const ySpace = point.y - circle.center.y;
+  if (Math.sqrt(xSpace * xSpace + ySpace * ySpace) < circle.radius) {
+    isInside = true;
+  }
+  return isInside;
 }
 
 /**
