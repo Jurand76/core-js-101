@@ -37,8 +37,8 @@ function Rectangle(width, height) {
  *    [1,2,3]   =>  '[1,2,3]'
  *    { width: 10, height : 20 } => '{"height":10,"width":20}'
  */
-function getJSON(/* obj */) {
-  throw new Error('Not implemented');
+function getJSON(obj) {
+  return JSON.stringify(obj);
 }
 
 /**
@@ -52,8 +52,10 @@ function getJSON(/* obj */) {
  *    const r = fromJSON(Circle.prototype, '{"radius":10}');
  *
  */
-function fromJSON(/* proto, json */) {
-  throw new Error('Not implemented');
+function fromJSON(proto, json) {
+  const parsedString = JSON.parse(json);
+  const valuesFromJson = Object.values(parsedString);
+  return new proto.constructor(...valuesFromJson);
 }
 
 /**
@@ -112,10 +114,12 @@ function fromJSON(/* proto, json */) {
 
 const cssSelectorBuilder = {
   element(/* value */) {
+    // return value.toString();
     throw new Error('Not implemented');
   },
 
   id(/* value */) {
+    // return `#${value}`;
     throw new Error('Not implemented');
   },
 
@@ -136,6 +140,10 @@ const cssSelectorBuilder = {
   },
 
   combine(/* selector1, combinator, selector2 */) {
+    throw new Error('Not implemented');
+  },
+
+  stringify() {
     throw new Error('Not implemented');
   },
 };
