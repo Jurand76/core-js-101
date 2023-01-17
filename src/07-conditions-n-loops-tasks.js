@@ -517,8 +517,44 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+
+// prettier-ignore
+function evaluateTicTacToePosition(position) {
+  let isWinner = false;
+  let whoWins = '';
+  for (let i = 0; i <= 2; i += 1) {
+    if (position[i][0] === position[i][1] && position[i][0] === position[i][2]) {
+      isWinner = true;
+      if (position[i][0]) {
+        whoWins = position[i][0].toString();
+      }
+    }
+  }
+  for (let i = 0; i <= 2; i += 1) {
+    if (position[0][i] === position[1][i] && position[0][i] === position[2][i]) {
+      isWinner = true;
+      if (position[0][i]) {
+        whoWins = position[0][i].toString();
+      }
+    }
+  }
+  if (position[0][0] === position[1][1] && position[0][0] === position[2][2]) {
+    isWinner = true;
+    if (position[0][0]) {
+      whoWins = position[0][0].toString();
+    }
+  }
+  if (position[2][0] === position[1][1] && position[2][0] === position[0][2]) {
+    isWinner = true;
+    if (position[2][0]) {
+      whoWins = position[2][0].toString();
+    }
+  }
+  if (isWinner && whoWins !== '') {
+    return whoWins;
+  }
+
+  return undefined;
 }
 
 module.exports = {
