@@ -314,7 +314,7 @@ function isCreditCardNumber(ccn) {
   const ccnStr = ccn.toString();
   const parity = ccnStr.length % 2;
   const checkdig = parseInt(ccnStr[ccnStr.length - 1], 10);
-  for (let i = 0; i < ccnStr.length - 2; i += 1) {
+  for (let i = 0; i < ccnStr.length - 1; i += 1) {
     number = parseInt(ccnStr[i], 10);
     if ((i + 1) % 2 === parity) {
       sum += number;
@@ -379,8 +379,40 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+
+// prettier-ignore;
+function isBracketsBalanced(str) {
+  let isBalanced = true;
+  const newStr = [];
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === '(' || str[i] === '[' || str[i] === '{' || str[i] === '<') {
+      newStr.push(str[i]);
+    }
+    if (str[i] === ')') {
+      if (newStr.pop() !== '(') {
+        isBalanced = false;
+      }
+    }
+    if (str[i] === ']') {
+      if (newStr.pop() !== '[') {
+        isBalanced = false;
+      }
+    }
+    if (str[i] === '}') {
+      if (newStr.pop() !== '{') {
+        isBalanced = false;
+      }
+    }
+    if (str[i] === '>') {
+      if (newStr.pop() !== '<') {
+        isBalanced = false;
+      }
+    }
+  }
+  if (newStr.length > 0) {
+    isBalanced = false;
+  }
+  return isBalanced;
 }
 
 /**
