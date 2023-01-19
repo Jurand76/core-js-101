@@ -23,7 +23,7 @@
  *
  */
 function getComposition(f, g) {
-  return function (x) {
+  return function getComp(x) {
     return f(g(x));
   };
 }
@@ -45,7 +45,7 @@ function getComposition(f, g) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (x) {
+  return function getPow(x) {
     return x ** exponent;
   };
 }
@@ -63,8 +63,14 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...args) {
+  return function getPoly(x) {
+    let total = 0;
+    for (let i = 0; i < args.length; i += 1) {
+      total += args[i] * x ** (args.length - i - 1);
+    }
+    return total;
+  };
 }
 
 /**
@@ -100,8 +106,19 @@ function memoize(/* func */) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  return function ret() {
+    for (let i = 1; i <= attempts; i += 1) {
+      try {
+        return func();
+      } catch (e) {
+        if (i === attempts) {
+          return attempts;
+        }
+      }
+    }
+    return attempts;
+  };
 }
 
 /**
