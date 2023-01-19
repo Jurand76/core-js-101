@@ -286,8 +286,14 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+// prettier-ignore
+function getCardId(value) {
+  let result = 0;
+  const cardChars = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  const cardIcons = ['♣', '♦', '♥', '♠'];
+  result += cardChars.indexOf(value.slice(0, value.length - 1));
+  result += 13 * cardIcons.indexOf(value.slice(value.length - 1, value.length));
+  return result;
 }
 
 module.exports = {
