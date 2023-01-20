@@ -468,8 +468,15 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]
  */
 // prettier-ignore
-function getIdentityMatrix() {
-  throw new Error('Not implemented');
+function getIdentityMatrix(size) {
+  return Array(size).fill(Array(size).fill()).map((item, index1) => (
+    item.map((item2, index2) => {
+      if (index1 === index2) {
+        return 1;
+      }
+      return 0;
+    })
+  ));
 }
 
 /**
