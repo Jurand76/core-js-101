@@ -101,6 +101,7 @@ function getFastestPromise(array) {
  *    });
  *
  */
+// prettier-ignore
 function chainPromises(/* array, action */) {
   throw new Error('Not implemented');
 }
